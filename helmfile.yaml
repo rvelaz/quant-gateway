@@ -1,0 +1,25 @@
+helmDefaults:
+  verify: false
+  wait: false
+  timeout: 600
+  recreatePods: false
+  force: false
+  createNamespace: true
+#repositories:
+#  - name: stable
+#    url: https://charts.helm.sh/stable
+#  - name: bitnami
+#    url: https://charts.bitnami.com/bitnami
+
+releases:
+- name: quant-overledger-network-gateway
+  namespace: quant
+  chart: ./quant-overledger-network-gateway
+- name: mongodb
+  namespace: quant
+  chart: bitnami/mongodb
+  values:
+    - fullnameOverride: mongodb-gateway
+    - auth:
+        enabled: false
+
